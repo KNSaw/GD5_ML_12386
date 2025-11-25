@@ -21,7 +21,7 @@ st.markdown("""
 try:
     package = pickle.load(open("RFREG_model.pkl", "rb"))
 except Exception:
-    st.error("вќЊ File RFREG_model.pkl tidak ditemukan. Pastikan file berada di folder yang sama dengan app.py.")
+    st.error("File RFREG_model.pkl tidak ditemukan. Pastikan file berada di folder yang sama dengan app.py.")
 st.stop()
 
 model = package["model"]
@@ -62,31 +62,31 @@ if predict_btn:
         </h3>
     """, unsafe_allow_html=True)
 
-st.markdown("---")
-st.subheader(" Penjelasan Prediksi")
-st.markdown(f"""
-**Interpretasi Berdasarkan Input:**
-- **Overall Quality = {overall_qual}**
- Level ini {"tinggi" if overall_qual >= 7 else "sedang" if overall_qual >= 5 else "rendah"} dan sangat memengaruhi harga.
-- **Overall Condition = {overall_cond}**
- Menjelaskan kondisi struktural & pemeliharaan rumah.
-- **Gr Liv Area = {gr_liv_area:,} sqft**
- Rumah seluas ini termasuk kategori {"besar" if gr_liv_area > 2000 else "standar"}.
-- **Central Air = {central_air}**
- Kehadiran AC sentral meningkatkan nilai rumah.
-- **Total Basement SF = {total_bsmt_sf:,} sqft**
- Basement luas menambah area fungsional.
----
-### Akurasi Model (dibaca otomatis dari model)
-- **MAE Train:** В± **${MODEL_MAE_TRAIN:,.0f}**
-- **MAE Test:** В± **${MODEL_MAE_TEST:,.0f}**
-- **RВІ Train:** **{MODEL_R2_TRAIN:.2f}**
-- **RВІ Test:** **{MODEL_R2_TEST:.2f}**
-**Apa artinya?**
-- Prediksi model biasanya meleset sekitar **${MODEL_MAE_TEST:,.0f}** dari harga asli.
-- Model menjelaskan sekitar **{MODEL_R2_TEST*100:.0f}%** variasi harga rumah.
-- Prediksi adalah **estimasi**, bukan harga pasti вЂ” ada margin error yang wajar.
----
-**Catatan tentang model:**
-Random Forest mempelajari pola non-linear dari banyak pohon keputusan sehingga mampu memprediksi harga berdasarkan kombinasi fitur secara lebih fleksibel.
-""")
+    st.markdown("---")
+    st.subheader(" Penjelasan Prediksi")
+    st.markdown(f"""
+    **Interpretasi Berdasarkan Input:**
+    - **Overall Quality = {overall_qual}**
+    Level ini {"tinggi" if overall_qual >= 7 else "sedang" if overall_qual >= 5 else "rendah"} dan sangat memengaruhi harga.
+    - **Overall Condition = {overall_cond}**
+    Menjelaskan kondisi struktural & pemeliharaan rumah.
+    - **Gr Liv Area = {gr_liv_area:,} sqft**
+    Rumah seluas ini termasuk kategori {"besar" if gr_liv_area > 2000 else "standar"}.
+    - **Central Air = {central_air}**
+    Kehadiran AC sentral meningkatkan nilai rumah.
+    - **Total Basement SF = {total_bsmt_sf:,} sqft**
+    Basement luas menambah area fungsional.
+    ---
+    ### Akurasi Model (dibaca otomatis dari model)
+    - **MAE Train:** В± **${MODEL_MAE_TRAIN:,.0f}**
+    - **MAE Test:** В± **${MODEL_MAE_TEST:,.0f}**
+    - **RВІ Train:** **{MODEL_R2_TRAIN:.2f}**
+    - **RВІ Test:** **{MODEL_R2_TEST:.2f}**
+    **Apa artinya?**
+    - Prediksi model biasanya meleset sekitar **${MODEL_MAE_TEST:,.0f}** dari harga asli.
+    - Model menjelaskan sekitar **{MODEL_R2_TEST*100:.0f}%** variasi harga rumah.
+    - Prediksi adalah **estimasi**, bukan harga pasti вЂ” ada margin error yang wajar.
+    ---
+    **Catatan tentang model:**
+    Random Forest mempelajari pola non-linear dari banyak pohon keputusan sehingga mampu memprediksi harga berdasarkan kombinasi fitur secara lebih fleksibel.
+    """)
