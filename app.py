@@ -22,7 +22,7 @@ try:
     package = pickle.load(open("RFREG_model.pkl", "rb"))
 except Exception:
     st.error("File RFREG_model.pkl tidak ditemukan. Pastikan file berada di folder yang sama dengan app.py.")
-st.stop()
+    st.stop()
 
 model = package["model"]
 MODEL_MAE_TRAIN = package["mae_train"]
@@ -32,6 +32,7 @@ MODEL_R2_TEST = package["r2_test"]
 
 
 st.header("Input Fitur Rumah")
+
 overall_qual = st.slider("Overall Quality (1 - 10)", 1, 10, 5)
 overall_cond = st.slider("Overall Condition (1 - 9)", 1, 9, 5)
 central_air = st.selectbox("Central Air", ["Yes", "No"])
